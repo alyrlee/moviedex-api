@@ -1,4 +1,4 @@
-// ce528fa2-8bb2-4b60-b8fc-01da266af542
+
 require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
@@ -10,7 +10,8 @@ const MOVIES = require('./movies-data-small.json');
 
 const app = express();
 
-app.use(morgan('dev'));
+const morganSetting = process.env.NODE_ENV === 'production' ? 'tiny' : 'common'
+app.use(morgan(morganSetting));
 
 app.use(cors());
 app.use(helmet());
